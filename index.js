@@ -18,10 +18,8 @@ const addButtonEl = document.getElementById("add-button")
 const shoppingList = document.getElementById("shopping-list")
 
 
-
-
-addButtonEl.addEventListener("click", function() {
-    let inputValue = inputFieldEl.value
+function addItem() {
+    let inputValue = inputFieldEl.value.trim()
 
     if (inputValue === "") {
         return
@@ -30,9 +28,18 @@ addButtonEl.addEventListener("click", function() {
     push(itemsInDB, inputValue)
 
     clearInputFieldEl()
+}
+
+addButtonEl.addEventListener("click", addItem)
+
+inputFieldEl.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addItem()
+    }
+})    
   
     
-})
+
 
 onValue(itemsInDB, function(snapshot) {
     
